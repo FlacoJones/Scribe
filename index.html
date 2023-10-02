@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* Added this line */
+        height: 100vh;
+        margin: 0;
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      .word {
+        position: relative;
+        display: inline-block;
+      }
+
+      .word:hover .tooltip,
+      .tooltip:hover {
+        visibility: visible;
+        opacity: 1;
+        cursor: pointer;
+      }
+
+      .tooltip {
+        visibility: hidden;
+        background-color: blue;
+        color: white;
+        text-align: center;
+        border-radius: 5px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        bottom: 100%; /* Adjusted value */
+        left: 50%;
+        transform: translateX(-50%); /* Center the tooltip */
+        width: 200px; /* Set a fixed width */
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .tooltip::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: blue transparent transparent transparent;
+      }
+
+      button {
+        margin-top: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+    <title>Dhammapada 20</title>
+  </head>
+  <body>
+    <h1>Dhammapada 20</h1>
+    <p>
+      <span class="word">
+        Na
+        <span class="tooltip">
+          a negative particle, "not" or "no." similar to "indeed" in English.,
+          indeclinable particle often used for emphasis
+          <br /><br />
+          Morphology: Particle
+          <br /><br />
+          Other Occurences
+          <br /><br />
+          <button onclick="speak('Na')">🔊</button>
+        </span>
+      </span>
+      <span class="word">
+        hi
+        <span class="tooltip">
+          similar to "indeed" in English., indeclinable particle often used for
+          emphasis
+          <br /><br />
+          Morphology: Particle
+          <br /><br />
+          Other Occurences
+          <br /><br />
+          <button onclick="speak('hee')">🔊</button>
+        </span>
+      </span>
+      <span class="word">
+        verena
+        <span class="tooltip">
+          "by/through hatreds" or "by/through enmities"
+          <br /><br />
+          Morphology: Instrumental Singular of stem "vera"
+          <br /><br />
+          Other Occurences
+          <br /><br />
+          <button onclick="speak('vayrayna')">🔊</button>
+        </span>
+      </span>
+      <span class="word">
+        verāni.
+        <span class="tooltip">
+          "hatreds" or "enmities."
+          <br /><br />
+          Morphology: Nominative Plural of stem "vera"
+          <br /><br />
+          Other Occurences
+          <br /><br />
+          <button onclick="speak('vay rah knee')">🔊</button>
+        </span>
+      </span>
+    </p>
+    <script>
+      function speak(text) {
+        var msg = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(msg);
+      }
+    </script>
+  </body>
+</html>
