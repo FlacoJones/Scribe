@@ -14,6 +14,24 @@
         text-align: center;
       }
 
+      #customContextMenu {
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+      }
+
+      #customContextMenu div {
+        padding: 5px 10px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      #customContextMenu div:last-child {
+        border-bottom: none;
+      }
+
+      #customContextMenu div:hover {
+        background-color: #e9e9e9;
+      }
+
       h1 {
         margin-bottom: 20px;
       }
@@ -121,10 +139,56 @@
         </span>
       </span>
     </p>
+    <div
+      id="customContextMenu"
+      style="
+        display: none;
+        position: absolute;
+        z-index: 1000;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        padding: 10px;
+      "
+    >
+      <div onclick="translateText()">Translate</div>
+      <div onclick="explainText()">Explain</div>
+    </div>
+
     <script>
       function speak(text) {
         var msg = new SpeechSynthesisUtterance(text);
         window.speechSynthesis.speak(msg);
+      }
+
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+
+        // Check if text is selected
+        if (window.getSelection().toString().trim() !== "") {
+          // Display the custom context menu
+          const menu = document.getElementById("customContextMenu");
+          menu.style.display = "block";
+          menu.style.left = `${e.pageX}px`;
+          menu.style.top = `${e.pageY}px`;
+        }
+      });
+
+      document.addEventListener("click", function (e) {
+        // Hide the custom context menu
+        const menu = document.getElementById("customContextMenu");
+        menu.style.display = "none";
+      });
+
+      function translateText() {
+        const selectedText = window.getSelection().toString();
+        console.log(`Translating: ${selectedText}`);
+        // Implement your translation logic here
+      }
+
+      function explainText() {
+        const selectedText = window.getSelection().toString();
+        console.log(`Explaining: ${selectedText}`);
+        // Implement your explanation logic here
       }
     </script>
   </body>
