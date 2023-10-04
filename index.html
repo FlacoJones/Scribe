@@ -36,16 +36,22 @@
         margin-bottom: 20px;
       }
 
+			.no-hover .tooltip {
+					visibility: hidden !important;
+					opacity: 0 !important;
+			}
+
       .word {
         position: relative;
         display: inline-block;
+				cursor: default;
       }
 
       .word:hover .tooltip,
       .tooltip:hover {
         visibility: visible;
         opacity: 1;
-        cursor: pointer;
+        cursor: default;
       }
 
       .tooltip {
@@ -159,6 +165,7 @@
     </div>
 
     <script>
+			
       function speak(text) {
         var msg = new SpeechSynthesisUtterance(text);
         window.speechSynthesis.speak(msg);
@@ -194,6 +201,24 @@
         console.log(`Explaining: ${selectedText}`);
         // Implement your explanation logic here
       }
+
+			document.addEventListener('selectionchange', function() {
+					const selectedText = window.getSelection().toString().trim();
+					const words = document.querySelectorAll('.word');
+
+					if (selectedText !== '') {
+							// Disable hover effect
+							words.forEach(word => {
+									word.classList.add('no-hover');
+							});
+					} else {
+							// Enable hover effect
+							words.forEach(word => {
+									word.classList.remove('no-hover');
+							});
+					}
+			});
+
     </script>
   </body>
 </html>
