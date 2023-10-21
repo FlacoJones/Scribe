@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PALI - ENGLISH</title>
+    <style>
+      .tooltip {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        padding: 10px;
+        z-index: 1000;
+      }
+      .word:hover .tooltip {
+        display: block;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        const elements = document.querySelectorAll("[data-pali]");
+        elements.forEach((element) => {
+          const tooltip = document.createElement("div");
+          tooltip.className = "tooltip";
+          tooltip.textContent = `English: ${element.dataset.english} Case: ${element.dataset.case}`;
+          element.appendChild(tooltip);
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Pali Data Attrs</h1>
+    <span
+      class="word"
+      data-pali="verena"
+      data-case="Inst. Sg."
+      data-english="enimty"
+    >
+      verena
+      <div class="tooltip"></div>
+    </span>
+  </body>
+</html>
